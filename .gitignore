@@ -31,3 +31,8 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local SQLite database
+
+data/
+*.db
