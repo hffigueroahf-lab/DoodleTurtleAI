@@ -1,7 +1,7 @@
 """
 Knowledge loader for DoodleTurtleAI.
 
-Responsible for reading Markdown knowledge files.
+Responsible for discovering and reading Markdown knowledge files.
 """
 
 from pathlib import Path
@@ -20,3 +20,7 @@ class KnowledgeLoader:
         knowledge_path = self._repository_root / "knowledge"
 
         return sorted(knowledge_path.rglob("*.md"))
+
+    def load_document(self, path: Path) -> str:
+        """Load the contents of a knowledge document."""
+        return path.read_text(encoding="utf-8")
