@@ -34,6 +34,21 @@ class DoodleProject:
         """Return the project status."""
         return self._status
 
+    @property
+    def is_planning(self) -> bool:
+        """Return True if the project is in planning."""
+        return self._status == "Planning"
+
+    @property
+    def is_active(self) -> bool:
+        """Return True if the project is active."""
+        return self._status == "Active"
+
+    @property
+    def is_complete(self) -> bool:
+        """Return True if the project is complete."""
+        return self._status == "Complete"
+
     def start(self) -> None:
         """Mark the project as active."""
         self._status = "Active"
