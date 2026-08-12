@@ -26,6 +26,10 @@ class KnowledgeLibrary:
         """Return all discovered knowledge documents."""
         return self._documents
 
+    def count(self) -> int:
+        """Return the number of knowledge documents."""
+        return len(self._documents)
+
     def get(self, name: str) -> str:
         """Return the contents of a knowledge document by name."""
         document = self._document_index.get(name)
