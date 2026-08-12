@@ -1,147 +1,128 @@
 # DoodleTurtleAI Architecture
 
-## Overview
-
-DoodleTurtleAI is designed as a modular educational platform that combines software engineering, structured knowledge, and artificial intelligence to create meaningful learning experiences for children.
-
-The architecture emphasizes simplicity, maintainability, and clear separation of responsibilities. Every major component has a single purpose and communicates with other components through well-defined interfaces.
+**Project Genesis**
 
 ---
 
-# Architectural Philosophy
+# Vision
 
-Project Genesis follows several core engineering principles:
+DoodleTurtleAI is the operating system behind DoodleTurtleCo.
 
-* One responsibility per class.
-* One responsibility per module.
-* Structure before implementation.
-* Design before optimization.
-* Knowledge remains separate from application code.
-* Documentation evolves alongside the software.
+Its purpose is to help build, organize, manage, and grow DoodleTurtleCo while preserving the educational values and philosophy established through Finn.
 
-These principles guide every architectural decision.
+Every subsystem has a single responsibility.
+
+Together, they form one cohesive platform.
 
 ---
 
-# Current System Components
+# System Architecture
 
-## Startup Engine
-
-Responsible for:
-
-* Loading configuration
-* Initializing logging
-* Initializing the Turtle Brain
-* Running startup health checks
-
----
-
-## Turtle Brain
-
-The Turtle Brain manages structured memory.
-
-Current responsibilities include:
-
-* Database initialization
-* Project storage
-* Repository pattern
-* Service layer
-* Future persistent memory
+```text
+                    DoodleTurtleAI
+                           │
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+        ▼                  ▼                  ▼
+Knowledge Library     Finn Engine     Operations Engine
+        │
+        ▼
+Context Strategy
+        │
+        ▼
+Context Builder
+        │
+        ▼
+Intelligence Service
+        │
+        ▼
+Provider
+```
 
 ---
+
+# Subsystems
 
 ## Knowledge Library
 
-The Knowledge Library contains the permanent knowledge and guiding principles of DoodleTurtleCo.
+Purpose:
 
-Current sections include:
+Maintain the official knowledge and documentation of DoodleTurtleCo.
 
-* Constitution
-* Mission
-* Vision
-* Child First
-* Teaching Principles
-* Finn
+Examples:
 
-Knowledge is stored as Markdown documents to remain human-readable and easily maintained.
-
----
-
-## Knowledge Integration
-
-The Knowledge Integration subsystem connects the application to the Knowledge Library.
-
-Current components:
-
-* KnowledgeLoader
-* KnowledgeLibrary
-
-Its responsibility is to discover, organize, and provide access to knowledge documents.
+- Mission
+- Vision
+- Child First
+- Teaching Principles
+- Character Guides
+- Future Documentation
 
 ---
 
-# Repository Structure
+## Finn Engine
 
-```text
-docs/
-    Technical documentation
+Purpose:
 
-knowledge/
-    Permanent organizational knowledge
+Represent Finn's personality, teaching philosophy, and educational approach.
 
-src/
-    Python application
+Responsibilities:
 
-scripts/
-    Development and testing utilities
-
-data/
-    Local runtime data
-
-tests/
-    Automated testing (future)
-```
+- Child-first communication
+- Curious learning
+- Gentle encouragement
+- Positive educational experiences
 
 ---
 
-# Current Data Flow
+## Operations Engine
 
-```text
-User
-   │
-   ▼
-Startup
-   │
-   ▼
-Application
-   │
-   ├────────► Turtle Brain
-   │
-   └────────► Knowledge Library
-```
+Purpose:
+
+Coordinate the business operations of DoodleTurtleCo.
+
+Responsibilities:
+
+- Project management
+- Workflow coordination
+- Operational reporting
+- Business organization
 
 ---
 
-# Future Architecture
+## Intelligence Service
 
-As Project Genesis grows, additional systems are expected to include:
+Purpose:
 
-* Character Management
-* Story Engine
-* Lesson Engine
-* Conversation Engine
-* Illustration Services
-* AI Agents
-* Learning Analytics
+Provide intelligence capabilities while remaining independent of any specific provider.
 
-Each future subsystem will be documented as it is designed and implemented.
+Responsibilities:
+
+- Build knowledge context
+- Select context strategies
+- Coordinate providers
+- Return structured responses
 
 ---
 
-# Living Document
+# Design Principles
 
-This document describes the current architecture of DoodleTurtleAI.
+Every subsystem should have one primary responsibility.
 
-It is intended to evolve alongside the software.
+Subsystems communicate through well-defined interfaces.
 
-Architectural changes should be reflected here as part of the development process.
+Knowledge belongs to the Knowledge Library.
+
+Business workflows belong to the Operations Engine.
+
+Educational behavior belongs to Finn.
+
+Intelligence belongs to the Intelligence Service.
+
+External providers remain isolated behind provider interfaces.
+
+---
+
+# Long-Term Goal
+
+Create an intelligent operating system that helps build, manage, and grow DoodleTurtleCo while inspiring children to become curious, creative, compassionate lifelong learners.

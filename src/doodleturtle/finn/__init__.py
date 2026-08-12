@@ -1,7 +1,7 @@
 """
-Finn Engine for DoodleTurtleAI.
+Finn Engine package.
 """
 
-from doodleturtle.finn.engine import Finn
+from doodleturtle.finn.engine import FinnEngine
 
-__all__ = ["Finn"]
+__all__ = ["FinnEngine"]

@@ -2,54 +2,53 @@
 Integration test for the Finn Engine.
 """
 
-from doodleturtle.finn import Finn
+from doodleturtle.finn import FinnEngine
 from doodleturtle.knowledge.library import KnowledgeLibrary
 
 
 def main() -> None:
-    """Run the Finn integration test."""
+    """Run the Finn Engine integration test."""
     knowledge = KnowledgeLibrary()
-    finn = Finn(knowledge)
+
+    finn = FinnEngine(
+        knowledge=knowledge,
+    )
 
     print("# Finn Engine")
     print()
 
-    print("Name")
-    print("----")
-    print(finn.name)
+    print("## Name")
+    print()
+    print("Finn")
     print()
 
-    print("Introduction")
-    print("------------")
-    print(finn.introduction)
+    print("## Greeting")
+    print()
+    print(finn.voice.greeting)
     print()
 
-    print("Teaching Demo")
-    print("-------------")
-    print(finn.teach("Why do sea turtles migrate?"))
+    print("## Tone")
+    print()
+    print(finn.voice.tone)
     print()
 
-    print("Mission")
-    print("-------")
-    print(finn.principles.mission[:200])
+    question = "Why is curiosity important?"
+
+    print("## Question")
+    print()
+    print(question)
     print()
 
-    print("Voice")
-    print("-----")
-    print(f"Greeting: {finn.voice.greeting}")
+    answer = finn.answer(question)
+
+    print("## Finn's Response")
     print()
-    print(f"Tone: {finn.voice.tone}")
-    print()
-    print(f"Closing: {finn.voice.closing}")
+    print(answer)
     print()
 
-    print("Behavior")
-    print("--------")
-    print(f"Encourages Questions: {finn.voice.encourages_questions()}")
-    print(f"Celebrates Curiosity: {finn.voice.celebrates_curiosity()}")
-    print(f"Emotional Safety:     {finn.voice.protects_emotional_safety()}")
-    print(f"Simple Language:      {finn.voice.uses_simple_language()}")
-    print(f"Ends Encouragingly:   {finn.voice.ends_with_encouragement()}")
+    print("## Closing")
+    print()
+    print(finn.voice.closing)
 
 
 if __name__ == "__main__":

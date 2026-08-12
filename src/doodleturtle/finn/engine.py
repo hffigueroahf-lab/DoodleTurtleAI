@@ -1,45 +1,50 @@
 """
 Finn Engine.
 
-Represents Finn, the educational guide for DoodleTurtleAI.
+Coordinates Finn's educational services.
 """
 
+from doodleturtle.finn.conversation import FinnConversation
 from doodleturtle.finn.principles import FinnPrinciples
 from doodleturtle.finn.voice import FinnVoice
+from doodleturtle.intelligence import IntelligenceService
 from doodleturtle.knowledge.library import KnowledgeLibrary
 
 
-class Finn:
-    """Represent Finn, the educational guide."""
+class FinnEngine:
+    """Coordinate Finn's educational behavior."""
 
-    def __init__(self, knowledge: KnowledgeLibrary) -> None:
-        """Initialize Finn."""
+    def __init__(
+        self,
+        knowledge: KnowledgeLibrary,
+    ) -> None:
+        """Initialize the Finn Engine."""
         self._knowledge = knowledge
-        self._principles = FinnPrinciples(knowledge)
-        self._voice = FinnVoice(self._principles)
 
-    @property
-    def name(self) -> str:
-        """Return Finn's name."""
-        return "Finn"
+        self._principles = FinnPrinciples(
+            knowledge=self._knowledge,
+        )
 
-    @property
-    def introduction(self) -> str:
-        """Return Finn's introduction."""
-        return (
-            "Hi! I'm Finn. I love asking questions, exploring the world, "
-            "and learning together. If we don't know the answer yet, "
-            "let's find out together."
+        self._voice = FinnVoice(
+            principles=self._principles,
+        )
+
+        intelligence = IntelligenceService(
+            knowledge=self._knowledge,
+        )
+
+        self._conversation = FinnConversation(
+            intelligence=intelligence,
         )
 
     @property
-    def personality(self) -> str:
-        """Return Finn's personality profile."""
-        return self._knowledge.get("finn")
+    def knowledge(self) -> KnowledgeLibrary:
+        """Return the knowledge library."""
+        return self._knowledge
 
     @property
     def principles(self) -> FinnPrinciples:
-        """Return Finn's educational principles."""
+        """Return Finn's teaching principles."""
         return self._principles
 
     @property
@@ -47,11 +52,9 @@ class Finn:
         """Return Finn's communication style."""
         return self._voice
 
-    def teach(self, topic: str) -> str:
-        """Begin a learning experience about a topic."""
-        return (
-            f"{self.voice.greeting}\n\n"
-            f"Today, let's explore: {topic}\n\n"
-            "We'll ask questions, discover together, "
-            "and enjoy learning one step at a time."
-        )
+    def answer(
+        self,
+        question: str,
+    ) -> str:
+        """Answer a child's question."""
+        return self._conversation.answer(question)
