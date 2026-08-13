@@ -1,41 +1,26 @@
 """
 Intelligence Provider.
 
-Provides intelligence services for DoodleTurtleAI.
+Defines the interface implemented by all intelligence providers.
 """
+
+from abc import ABC, abstractmethod
 
 from doodleturtle.intelligence.response import IntelligenceResponse
 
 
-class IntelligenceProvider:
-    """Base intelligence provider."""
-
-    def __init__(self) -> None:
-        """Initialize the provider."""
-        self._name = "Internal"
+class IntelligenceProvider(ABC):
+    """Abstract base class for intelligence providers."""
 
     @property
+    @abstractmethod
     def name(self) -> str:
         """Return the provider name."""
-        return self._name
 
-    def generate(
+    @abstractmethod
+    def answer(
         self,
         prompt: str,
         context: str,
     ) -> IntelligenceResponse:
         """Generate an intelligence response."""
-        content = (
-            "Intelligence services are not yet connected.\n\n"
-            "Prompt\n"
-            "------\n"
-            f"{prompt}\n\n"
-            "Knowledge Context\n"
-            "-----------------\n"
-            f"{context}"
-        )
-
-        return IntelligenceResponse(
-            content=content,
-            provider=self._name,
-        )

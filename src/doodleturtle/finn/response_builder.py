@@ -1,29 +1,43 @@
 """
 Finn Response Builder.
 
-Transforms intelligence responses into
-Finn's educational voice.
+Formats educational experiences into conversational responses.
 """
 
-from doodleturtle.intelligence.response import IntelligenceResponse
+from doodleturtle.finn.experience import FinnExperience
+from doodleturtle.finn.messages import (
+    CELEBRATION,
+    CREATE,
+    EXPLORE,
+    LEARN,
+    REFLECT,
+    WELCOME,
+    WONDER,
+)
 
 
 class FinnResponseBuilder:
-    """Build child-friendly responses."""
+    """Present educational experiences as conversations."""
 
     def build(
         self,
-        response: IntelligenceResponse,
+        experience: FinnExperience,
     ) -> str:
-        """Build a response for children."""
+        """Build a conversational response."""
+
+        lesson = experience.lesson
+
         return (
-            "That's a wonderful question!\n\n"
-            "Let's explore it together.\n\n"
-            "I'm using everything I've learned "
-            "to help answer your question.\n\n"
-            "----\n\n"
-            f"{response.content}\n\n"
-            "----\n\n"
-            "Keep asking questions.\n"
-            "Curiosity helps us discover amazing things!"
+            f"{WELCOME}\n\n"
+            f"{WONDER}\n\n"
+            f"{LEARN}\n\n"
+            f"{lesson.explanation}\n\n"
+            f"{EXPLORE}\n\n"
+            f"{experience.fun_fact}\n\n"
+            f"{CREATE}\n\n"
+            f"{experience.activity}\n\n"
+            f"{REFLECT}\n\n"
+            f"{experience.reflection}\n\n"
+            f"{CELEBRATION}\n\n"
+            f"{lesson.closing}"
         )

@@ -8,6 +8,7 @@ from doodleturtle.knowledge.library import KnowledgeLibrary
 
 def test_intelligence_service_generates_response() -> None:
     """Verify the Intelligence Service returns a response."""
+
     knowledge = KnowledgeLibrary()
 
     intelligence = IntelligenceService(
@@ -19,14 +20,9 @@ def test_intelligence_service_generates_response() -> None:
         strategy="finn",
     )
 
-    assert response.provider == "Internal"
+    assert response.provider == "Placeholder"
 
     assert (
-        "Why is curiosity important?"
-        in response.content
-    )
-
-    assert (
-        "Our Mission"
+        "Intelligence services are not yet connected."
         in response.content
     )

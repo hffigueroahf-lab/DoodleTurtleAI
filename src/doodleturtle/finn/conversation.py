@@ -5,6 +5,8 @@ Coordinates educational conversations using the
 Intelligence Service.
 """
 
+from doodleturtle.finn.experience_builder import FinnExperienceBuilder
+from doodleturtle.finn.lesson_builder import FinnLessonBuilder
 from doodleturtle.finn.response_builder import FinnResponseBuilder
 from doodleturtle.intelligence import IntelligenceService
 
@@ -18,16 +20,29 @@ class FinnConversation:
     ) -> None:
         """Initialize the conversation."""
         self._intelligence = intelligence
-        self._builder = FinnResponseBuilder()
+        self._lesson_builder = FinnLessonBuilder()
+        self._experience_builder = FinnExperienceBuilder()
+        self._response_builder = FinnResponseBuilder()
 
     def answer(
         self,
         question: str,
     ) -> str:
         """Answer a child's question."""
-        response = self._intelligence.generate(
+
+        intelligence_response = self._intelligence.generate(
             prompt=question,
             strategy="finn",
         )
 
-        return self._builder.build(response)
+        lesson = self._lesson_builder.build(
+            intelligence_response,
+        )
+
+        experience = self._experience_builder.build(
+            lesson,
+        )
+
+        return self._response_builder.build(
+            experience,
+        )
